@@ -3845,3 +3845,29 @@ Stack: AxiosError: Request failed with status code 500
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
 ---------------------------------------
 
+Time: Sat Nov 30 2024 16:48:10 GMT+0200 (Israel Standard Time)
+Message: Request failed with status code 500
+Stack: AxiosError: Request failed with status code 500
+    at settle (C:\Users\shlom\Documents\Rhythmy\Backend\Gateway\node_modules\axios\lib\core\settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (C:\Users\shlom\Documents\Rhythmy\Backend\Gateway\node_modules\axios\lib\adapters\http.js:599:11)
+    at IncomingMessage.emit (node:events:531:35)
+    at IncomingMessage.emit (node:domain:488:12)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (C:\Users\shlom\Documents\Rhythmy\Backend\Gateway\node_modules\axios\lib\core\Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------------
+
+Time: Sat Nov 30 2024 17:02:08 GMT+0200 (Israel Standard Time)
+Message: Request failed with status code 500
+Stack: AxiosError: Request failed with status code 500
+    at settle (C:\Users\shlom\Documents\Rhythmy\Backend\Gateway\node_modules\axios\lib\core\settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (C:\Users\shlom\Documents\Rhythmy\Backend\Gateway\node_modules\axios\lib\adapters\http.js:599:11)
+    at IncomingMessage.emit (node:events:531:35)
+    at IncomingMessage.emit (node:domain:488:12)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (C:\Users\shlom\Documents\Rhythmy\Backend\Gateway\node_modules\axios\lib\core\Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------------
+

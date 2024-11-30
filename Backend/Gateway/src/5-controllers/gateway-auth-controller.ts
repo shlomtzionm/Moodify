@@ -15,6 +15,7 @@ class UserController {
     this.router.post("/token", this.callback);
     this.router.post("/user", this.getUserDate);
     this.router.post("/qna", this.getAnswer);
+    this.router.post("/tracks", this.getTracks);
   }
 
   private async callback(request: Request, response: Response, next: NextFunction): Promise<void> {
@@ -42,6 +43,19 @@ class UserController {
       const msRes = await axios.post(`${appConfig.openAiUrl}/qna`,{question})
      response.status(StatusCode.OK).json(msRes.data)
           } catch (err: any) {
+      next(err);
+    }
+  }
+
+  private async getTracks(request: Request, response: Response, next: NextFunction): Promise<void> {  
+    try {
+      const mood:string = request.body.mood
+      // const msRes = await axios.post(`${appConfig.authUrl}/tracks`,{mood})
+     response.status(StatusCode.OK).json(mood)
+console.log(mood);
+
+
+  } catch (err: any) {
       next(err);
     }
   }

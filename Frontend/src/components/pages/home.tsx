@@ -1,21 +1,24 @@
 import { FC, useEffect, useState } from "react";
 import { spotifyService } from "../../services/spotifyService";
 import { UserModel } from "../../models/userModel";
-import { Input } from "../ai/input";
+import { SelectMood } from "../select/Select";
 
 export const HomePage: FC = () => {
-  const [name,setName]= useState<string>("gust")
+  const [name, setName] = useState<string>("gust");
 
- async function getData(){
-const data:UserModel=   await spotifyService.getUserData()
-setName(data.display_name)
- } 
-  
+  async function getData() {
+    const data: UserModel = await spotifyService.getUserData();
+    setName(data.display_name);
+  }
+
   useEffect(() => {
-    getData()
+    getData();
   }, []);
-  return (<>
-  <h4>hello {name}</h4>
-  <Input/>
-  </>);
+
+  return (
+    <>
+      <h4>hello {name}</h4>
+      <SelectMood />
+    </>
+  );
 };
