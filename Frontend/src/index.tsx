@@ -1,10 +1,8 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {SpotifyLogin} from "./components/auth/Login"
 import { BrowserRouter } from 'react-router-dom';
-import Routing from './components/Layout/Routing';
+import { Layout } from './components/Layout/layout/Layout';
 
 
 const root = ReactDOM.createRoot(
@@ -13,7 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
     <BrowserRouter>
-    <Routing/>
+<Layout/>
     </BrowserRouter> 
   // {/* </React.StrictMode> */}
 );

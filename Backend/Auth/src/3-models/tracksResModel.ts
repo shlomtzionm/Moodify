@@ -18,7 +18,9 @@ export interface TracksResModel {
     external_urls: ExternalUrls
     href: string
     id: string
+    images: Image[]
     name: string
+    owner: Owner
     primary_color: any
     public: boolean
     snapshot_id: string
@@ -30,7 +32,25 @@ export interface TracksResModel {
   export interface ExternalUrls {
     spotify: string
   }
-
+  
+  export interface Image {
+    url: string
+    height: any
+    width: any
+  }
+  
+  export interface Owner {
+    display_name: string
+    external_urls: ExternalUrls2
+    href: string
+    id: string
+    type: string
+    uri: string
+  }
+  
+  export interface ExternalUrls2 {
+    spotify: string
+  }
   
   export interface Tracks {
     href: string

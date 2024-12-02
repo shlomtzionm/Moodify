@@ -4,10 +4,15 @@ import { Box, FormControl, InputLabel, MenuItem } from "@mui/material";
 import "./selectMood.css";
 import { Moods } from "../../models/moodsEnum";
 import { spotifyService } from "../../services/spotifyService";
+import { TracksResModel } from "../../models/tracksResModel";
 
-export const SelectMood: FC = () => {
+type SelectMoodProps = {
+  setUrlItem: (item:{ name: string; url: string}) => void;
+};
+
+export const SelectMood: FC<SelectMoodProps> = ({ setUrlItem }) => {
   const [moodList, setMoodList] = useState<string[]>([]);
-  const [selectedMood, setSelectedMood] = useState<Moods>(Moods.Happy); 
+  const [selectedMood, setSelectedMood] = useState<Moods | undefined>(undefined);
 
   useEffect(() => {
     const list: Moods[] = [];
@@ -18,12 +23,22 @@ export const SelectMood: FC = () => {
   }, []);
 
   const handleChange = async (event: SelectChangeEvent) => {
+
     const newMood = event.target.value as Moods;
     setSelectedMood(newMood);   
-    const tracks = await spotifyService.getTracks(newMood);
-    console.log(tracks);  // Make sure tracks are logged after being fetched
+
+    const tracks: TracksResModel = await spotifyService.getTracks(newMood);
+    const urlList = tracks.playlists.items
+      .filter((t) => t?.external_urls?.spotify) // Only include items with a valid spotify URL
+      .map((t) => ({
+        name: t.name,
+        url: t.external_urls.spotify,
+        id: t.id
+      }));
+      const randomNum = spotifyService.getRandom(urlList.length)
+
+    setUrlItem(urlList[randomNum]);
   };
-  
 
   return (
     <div id="SelectMood">
@@ -34,7 +49,6 @@ export const SelectMood: FC = () => {
             value={selectedMood} 
             label="Mood" 
             onChange={handleChange}
-            
           >
             {moodList.map((moodItem, index) => (
               <MenuItem key={index} value={moodItem}>

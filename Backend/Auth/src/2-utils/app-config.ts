@@ -17,6 +17,7 @@ class AppConfig {
     public readonly clientSecret = process.env.CLIENT_SECRET;
     public readonly redirectUri = process.env.REDIRECT_URI;
     public readonly profileDataUrl = process.env.PROFILE_DATA_URL;
+    public readonly searchUrl = process.env.SEARCH_URL;
 }
 
 export const appConfig = new AppConfig();

@@ -1,0 +1,13 @@
+
+#Header {
+    background-color: rgb(235, 236, 184);
+    width: 100%;
+    height: 90px;
+    box-shadow: 0 5px 5px rgb(232, 245, 206);
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: medium;
+    top: 0;
+    position: fixed;
+    z-index: 1000; /* Ensure it's above other elements */
+}

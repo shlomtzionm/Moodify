@@ -50,11 +50,13 @@ class UserController {
   private async getTracks(request: Request, response: Response, next: NextFunction): Promise<void> {  
     try {
       const mood:string = request.body.mood
-      // const msRes = await axios.post(`${appConfig.authUrl}/tracks`,{mood})
-     response.status(StatusCode.OK).json(mood)
-console.log(mood);
-
-
+      const token = request.headers.authorization?.split(' ')[1];
+      const msRes = await axios.post(`${appConfig.authUrl}/tracks`,{mood},{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
+     response.status(StatusCode.OK).json(msRes.data)
   } catch (err: any) {
       next(err);
     }

@@ -35,17 +35,30 @@ class SpotifyService {
     throw new Error("No token found");
   }
 
-  public async getTracks(mood:Moods){
-try {
-const res =  await axios.post<string>(appConfig.gatewayUrl+"/tracks",{mood})
-return res.data
-
-} catch (error:any) {
-  console.log(error);
-  
-}
+  public async getTracks(mood: Moods): Promise<TracksResModel> {
+    try {
+      const token = localStorage.getItem("spotifyAccessToken");
+      const res = await axios.post<TracksResModel>(
+        appConfig.gatewayUrl + "/tracks",
+        { mood },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      
+      return res.data;
+    } catch (error: any) {
+      throw new Error();
+    }
   }
-  
+
+  public getRandom(max:number) {
+  const  min = 0;
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }
 
 export const spotifyService = new SpotifyService();

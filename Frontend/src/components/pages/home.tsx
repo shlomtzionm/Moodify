@@ -1,24 +1,32 @@
 import { FC, useEffect, useState } from "react";
-import { spotifyService } from "../../services/spotifyService";
+import { SelectMood } from "../select/SelectMood";
+import "./home.css"
 import { UserModel } from "../../models/userModel";
-import { SelectMood } from "../select/Select";
-
+import { spotifyService } from "../../services/spotifyService";
 export const HomePage: FC = () => {
+  const [urlItem, setUrlItem] = useState<{ name: string, url: string}>({name:"",url:""});
+
   const [name, setName] = useState<string>("gust");
-
-  async function getData() {
-    const data: UserModel = await spotifyService.getUserData();
-    setName(data.display_name);
-  }
-
+  
   useEffect(() => {
     getData();
-  }, []);
+  }, [name]);
+
+  async function getData() {
+    try {
+    const data: UserModel = await spotifyService.getUserData();
+    setName(data.display_name); 
+    } catch (error:any) {
+      console.log(error);
+    }
+  }
+ 
 
   return (
-    <>
+    <div id="Home">
       <h4>hello {name}</h4>
-      <SelectMood />
-    </>
+      <SelectMood setUrlItem={setUrlItem} />
+     <a href={urlItem.url} target="blank">{urlItem.name}</a>
+    </div>
   );
 };

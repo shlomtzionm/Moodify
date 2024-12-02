@@ -2,8 +2,7 @@ export enum Moods{
     Happy = "Happy", 
     Sad = "Sad",
     Energized = "Energized",
-    Party = "Party",
-    Quiet ="Quiet",
-    Gymym = "Gym",
-
+    party = "Party",
+    Quiet = "Quiet",
+    Gym ="Gym"
 }
