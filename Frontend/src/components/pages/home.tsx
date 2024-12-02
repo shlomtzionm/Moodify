@@ -26,7 +26,14 @@ export const HomePage: FC = () => {
     <div id="Home">
       <h4>hello {name}</h4>
       <SelectMood setUrlItem={setUrlItem} />
-     <a href={urlItem.url} target="blank">{urlItem.name}</a>
+      {urlItem.url && (
+        
+  <a href={urlItem.url} target="_blank" rel="noopener noreferrer">
+    {urlItem.name}
+  </a>
+)}
+
+    
     </div>
   );
 };

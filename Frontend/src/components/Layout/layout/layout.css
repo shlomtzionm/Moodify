@@ -7,7 +7,7 @@
 }
 
 main{
-    margin: 25% auto; 
+    margin: 10% auto; 
     flex: 1; /* Makes it expand to fill available space */
-    padding: 20px; 
+    padding: 60px; 
 }

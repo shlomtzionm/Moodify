@@ -2723,3 +2723,21 @@ Stack: Error: Failed to exchange token
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
 ---------------------------------------
 
+Time: Mon Dec 02 2024 11:20:30 GMT+0200 (Israel Standard Time)
+Message: Failed to exchange token
+Stack: Error: Failed to exchange token
+    at UserService.<anonymous> (C:\Users\shlom\Documents\Rhythmy\Backend\Auth\src\4-services\auth-service.ts:21:13)
+    at Generator.throw (<anonymous>)
+    at rejected (C:\Users\shlom\Documents\Rhythmy\Backend\Auth\src\4-services\auth-service.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------------
+
+Time: Mon Dec 02 2024 11:20:33 GMT+0200 (Israel Standard Time)
+Message: Failed to exchange token
+Stack: Error: Failed to exchange token
+    at UserService.<anonymous> (C:\Users\shlom\Documents\Rhythmy\Backend\Auth\src\4-services\auth-service.ts:21:13)
+    at Generator.throw (<anonymous>)
+    at rejected (C:\Users\shlom\Documents\Rhythmy\Backend\Auth\src\4-services\auth-service.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------------
+

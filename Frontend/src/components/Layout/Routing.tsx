@@ -10,12 +10,8 @@ function Routing(): JSX.Element {
         <Route path="/login" element={<SpotifyLogin />} />
         <Route path="/callback" element={<SpotifyCallback />} />
         <Route path="/home" element={<HomePage />} />
-        {/* Default Route */}
         <Route path="/" element={<Navigate to="/login" />} />
-
-        {/* Page not found route */}
-        {/* <Route path="*" element={<Page404 />} /> */}
-      </Routes>
+  </Routes>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { spotifyService } from "../../services/spotifyService";
 import { TracksResModel } from "../../models/tracksResModel";
 
 type SelectMoodProps = {
-  setUrlItem: (item:{ name: string; url: string}) => void;
+  setUrlItem: (item: { name: string; url: string }) => void;
 };
 
 export const SelectMood: FC<SelectMoodProps> = ({ setUrlItem }) => {
@@ -23,21 +23,26 @@ export const SelectMood: FC<SelectMoodProps> = ({ setUrlItem }) => {
   }, []);
 
   const handleChange = async (event: SelectChangeEvent) => {
+    try {
+      const newMood = event.target.value as Moods;
+      setSelectedMood(newMood);
 
-    const newMood = event.target.value as Moods;
-    setSelectedMood(newMood);   
+      const tracks: TracksResModel = await spotifyService.getTracks(newMood);
+      const urlList = tracks.playlists.items
+        .filter(t => t?.external_urls?.spotify) // Only include items with a valid spotify URL
+        .map(t => ({
+          name: t.name,
+          url: t.external_urls.spotify,
+          id: t.id,
+        }));
+      const randomNum = spotifyService.getRandom(urlList.length-1);
+console.log(urlList[randomNum]);
 
-    const tracks: TracksResModel = await spotifyService.getTracks(newMood);
-    const urlList = tracks.playlists.items
-      .filter((t) => t?.external_urls?.spotify) // Only include items with a valid spotify URL
-      .map((t) => ({
-        name: t.name,
-        url: t.external_urls.spotify,
-        id: t.id
-      }));
-      const randomNum = spotifyService.getRandom(urlList.length)
-
-    setUrlItem(urlList[randomNum]);
+      setUrlItem(urlList[randomNum]);
+    } catch (error: any) {
+      console.log(error);
+      
+    }
   };
 
   return (
@@ -45,11 +50,7 @@ export const SelectMood: FC<SelectMoodProps> = ({ setUrlItem }) => {
       <Box>
         <FormControl fullWidth>
           <InputLabel>Mood</InputLabel>
-          <Select 
-            value={selectedMood} 
-            label="Mood" 
-            onChange={handleChange}
-          >
+          <Select value={selectedMood} label="Mood" onChange={handleChange}>
             {moodList.map((moodItem, index) => (
               <MenuItem key={index} value={moodItem}>
                 {moodItem}
