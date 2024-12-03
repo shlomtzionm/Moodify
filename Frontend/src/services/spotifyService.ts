@@ -6,8 +6,9 @@ import { Moods } from "../models/moodsEnum";
 import { TracksResModel } from "../models/tracksResModel";
 
 class SpotifyService {
-  public goToSpotifyAuth() {
-    window.location.href = appConfig.spotifyUrl;
+  public async goToSpotifyAuth() {
+    const url = await axios.get<string>(appConfig.gatewayUrl+"/spotify") ;
+    window.location.href = url.data
   }
 
   public async callback(code: string) {

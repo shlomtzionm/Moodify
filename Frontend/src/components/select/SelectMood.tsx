@@ -35,13 +35,10 @@ export const SelectMood: FC<SelectMoodProps> = ({ setUrlItem }) => {
           url: t.external_urls.spotify,
           id: t.id,
         }));
-      const randomNum = spotifyService.getRandom(urlList.length-1);
-console.log(urlList[randomNum]);
-
+      const randomNum = spotifyService.getRandom(urlList.length - 1);
       setUrlItem(urlList[randomNum]);
     } catch (error: any) {
       console.log(error);
-      
     }
   };
 

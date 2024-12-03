@@ -14,8 +14,18 @@ class UserController {
   private registerRoutes(): void {
     this.router.post("/token", this.callback);
     this.router.post("/user", this.getUserDate);
-    this.router.post("/qna", this.getAnswer);
     this.router.post("/tracks", this.getTracks);
+    this.router.get("/spotify", this.getSpotifyUrl);
+  }
+
+  private async getSpotifyUrl(request: Request, response: Response, next: NextFunction): Promise<void> {
+    try {
+     const msRes = await axios.get(`${appConfig.authUrl}/spotify`)
+     const url:{url:string} = msRes.data 
+     response.status(StatusCode.OK).json(url)
+          } catch (err: any) {
+      next(err);
+    }
   }
 
   private async callback(request: Request, response: Response, next: NextFunction): Promise<void> {
@@ -37,15 +47,8 @@ class UserController {
     }
   }
 
-  private async getAnswer(request: Request, response: Response, next: NextFunction): Promise<void> {  
-    try {
-      const question:string = request.body.question
-      const msRes = await axios.post(`${appConfig.openAiUrl}/qna`,{question})
-     response.status(StatusCode.OK).json(msRes.data)
-          } catch (err: any) {
-      next(err);
-    }
-  }
+
+  
 
   private async getTracks(request: Request, response: Response, next: NextFunction): Promise<void> {  
     try {

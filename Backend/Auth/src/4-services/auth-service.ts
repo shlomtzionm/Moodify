@@ -3,7 +3,7 @@ import axios from "axios";
 import { IUserModel } from "../3-models/user-model";
 const qs = require("qs");
 
-class UserService {
+class AuthService {
   public async callback(code: string) {
     try {
       const data = qs.stringify({
@@ -22,22 +22,24 @@ class UserService {
     }
   }
 
-  public async getUserData(token:string){
-    try {
-      const res = await axios.get<IUserModel>(appConfig.profileDataUrl,{
-        headers:{
-          Authorization:`Bearer ${token}`,
-           'Content-Type': 'application/json'
-        }
-      })
-      console.log(res.data);
-      
-      return res.data
-    } catch (error:any) {
-      console.log("error");
-          }
+  public authUrl() {
+    return `${appConfig.authUrl}?client_id=${appConfig.clientId}&response_type=code&redirect_uri=${appConfig.redirectUri}&scope=${appConfig.scope}`;
   }
-  
+
+  public async getUserData(token: string) {
+    try {
+      const res = await axios.get<IUserModel>(appConfig.profileDataUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      return res.data;
+    } catch (error: any) {
+      console.log("error");
+    }
+  }
 }
 
-export const userService = new UserService();
+export const authService = new AuthService();

@@ -18,6 +18,7 @@ class AppConfig {
     public readonly redirectUri = process.env.REDIRECT_URI;
     public readonly profileDataUrl = process.env.PROFILE_DATA_URL;
     public readonly searchUrl = process.env.SEARCH_URL;
+public readonly scope = process.env.SCOPE
 }
 
 export const appConfig = new AppConfig();

@@ -4,21 +4,17 @@ import { Moods } from "../3-models/moodsEnum";
 import { TracksResModel } from "../3-models/tracksResModel";
 
 class TrackServices {
-  public async getTracks(mood:Moods,token:string) {
- console.log(token);
- 
+  public async getTracks(mood: Moods, token: string) {
     try {
-        console.log(token);
-        
       const res = await axios.get<TracksResModel>(appConfig.searchUrl, {
         headers: { Authorization: `Bearer ${token}` },
-        params: { q: mood, type: 'playlist', limit: 25 }
-    });
-    return res.data
+        params: { q: mood, type: "playlist", limit: 25 },
+      });
+      return res.data;
     } catch (error: any) {
-        console.log(error);
-        
-      throw new Error;
+      console.log(error);
+
+      throw new Error();
     }
   }
 }

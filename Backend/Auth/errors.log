@@ -2741,3 +2741,8 @@ Stack: Error: Failed to exchange token
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
 ---------------------------------------
 
+Time: Tue Dec 03 2024 16:10:12 GMT+0200 (Israel Standard Time)
+Message: Route /api/spotify not found.
+Stack: undefined
+---------------------------------------
+

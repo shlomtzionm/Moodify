@@ -6,7 +6,7 @@ import { fileSaver } from "uploaded-file-saver";
 import { appConfig } from "./2-utils/app-config";
 import { errorsMiddleware } from "./6-middleware/errors-middleware";
 import { loggerMiddleware } from "./6-middleware/logger-middleware";
-import { userRouter } from "./5-controllers/auth-controller";
+import { authRouter } from "./5-controllers/auth-controller";
 import { dal } from "./2-utils/dal";
 import { tracksRouter } from "./5-controllers/tracks-controller";
 
@@ -35,7 +35,7 @@ class App {
         this.server.use(loggerMiddleware.logToConsole);
 
         // Connect any controller route to the server:
-        this.server.use("/api", userRouter);
+        this.server.use("/api", authRouter);
         this.server.use("/api", tracksRouter);
 
         // Route not found middleware: 

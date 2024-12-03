@@ -1,8 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
-import { userService } from "../4-services/auth-service";
 import { StatusCode } from "../3-models/enums";
 import { trackServices } from "../4-services/tracks-service";
-import { log } from "console";
 
 class TracksController {
   public readonly router = express.Router();
